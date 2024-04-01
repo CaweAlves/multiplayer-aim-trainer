@@ -14,8 +14,8 @@ new class extends Component {
     {
         foreach (range(1, 1) as $i) {
             $this->circles[] = [
-                'x' => rand(0, 100),
-                'y' => rand(0, 100),
+                'x' => rand(0, 90),
+                'y' => rand(0, 80),
                 'size' => rand(10, 150),
             ];
         }
