@@ -12,7 +12,7 @@ new class extends Component {
 
     public function generateCircles()
     {
-        foreach (range(1, 10) as $i) {
+        foreach (range(1, 1) as $i) {
             $this->circles[] = [
                 'x' => rand(0, 100),
                 'y' => rand(0, 100),
@@ -30,7 +30,7 @@ new class extends Component {
 <div class="text-center text-8xl">
     Trainer
 
-    <div wire:init="generateCircles" data-circles="{{ json_encode($circles) }}">
+    <div wire:poll="generateCircles" wire:init="generateCircles" data-circles="{{ json_encode($circles) }}">
         <div x-data="{ circles: @entangle('circles') }">
             <template x-for="(circle, index) in circles" :key="index">
                 <div
