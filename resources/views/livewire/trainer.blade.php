@@ -5,6 +5,8 @@ use Livewire\Volt\Component;
 new class extends Component {
     public array $circles = [];
 
+    public int $hits = 0;
+
     public function mount()
     {
         $this->generateCircles();
@@ -31,14 +33,14 @@ new class extends Component {
     Trainer
 
     <div wire:poll="generateCircles" wire:init="generateCircles" data-circles="{{ json_encode($circles) }}">
-        <div x-data="{ circles: @entangle('circles') }" @circleRemoved.window="removeCircle($event.detail.index)">
+        <div x-data="{ circles: @entangle('circles') }">
             <template x-for="(circle, index) in circles" :key="index">
                 <div
                     x-bind:style="`left: ${circle.x}%; top: ${circle.y}%; width: ${circle.size}px; height: ${circle.size}px; border-radius: 50%; background-color: red;`"
                     :class="circle.class"
                     x-bind:class="{ 'circle-exit': circle.class === 'circle-exit' }"
                     wire:click="clickCircle(index)"
-                    class="absolute"
+                    class="absolute circle-enter"
                 ></div>
             </template>
         </div>

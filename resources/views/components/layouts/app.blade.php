@@ -8,6 +8,15 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <style>
+            .circle-enter {
+                animation: fadeIn 5s forwards;
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+
             .circle-exit {
                 animation: fadeOut 0.3s forwards;
             }
@@ -24,12 +33,4 @@
 
         @livewire('mousetracker')
     </body>
-
-    <script>
-    function removeCircle(index) {
-        setTimeout(() => {
-            this.circles.splice(index, 1);
-        }, 300); // Ajuste o tempo de acordo com a duração da sua animação de saída
-    }
-</script>
 </html>
