@@ -18,7 +18,7 @@ new class extends Component {
             $this->circles[] = [
                 'x' => rand(0, 90),
                 'y' => rand(0, 80),
-                'size' => rand(10, 150),
+                'size' => rand(10, 50),
             ];
         }
     }
@@ -33,7 +33,7 @@ new class extends Component {
     Trainer
 
     <div wire:poll="generateCircles" wire:init="generateCircles" data-circles="{{ json_encode($circles) }}">
-        <div x-data="{ circles: @entangle('circles') }">
+        <div x-data="{ circles: @entangle('circles').live }">
             <template x-for="(circle, index) in circles" :key="index">
                 <div
                     x-bind:style="`left: ${circle.x}%; top: ${circle.y}%; width: ${circle.size}px; height: ${circle.size}px; border-radius: 50%; background-color: red;`"
@@ -45,6 +45,4 @@ new class extends Component {
             </template>
         </div>
     </div>
-</div>
-
 </div>
