@@ -9,17 +9,17 @@ new class extends Component {
     public int $hits = 0;
     public Carbon $TrainingStartDate;
 
-    public function mount()
+    public function mount(): void
     {
         $this->TrainingStartDate = now();
         $this->generateCircles();
     }
 
-    public function generateCircles()
+    public function generateCircles(): void
     {
         $seconds = (int)$this->TrainingStartDate->diffInSeconds(now());
         $intervals = $seconds / 15;
-        $maxCircles = (int)$intervals >= 1 ? (int)$intervals : 1;
+        $maxCircles = max(1, (int)$intervals);
         foreach (range(1, rand(1, $maxCircles)) as $i) {
             $this->circles[] = [
                 'x' => rand(0, 90),
@@ -29,7 +29,7 @@ new class extends Component {
         }
     }
 
-    public function clickCircle($index)
+    public function clickCircle($index): void
     {
         $this->circles[$index]['class'] = 'circle-exit';
         $this->dispatch('circleRemoved', ['index' => $index]);
