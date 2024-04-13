@@ -7,21 +7,20 @@ new class extends Component {
     public array $circles = [];
 
     public int $hits = 0;
-
-    public Carbon $initTrainer;
+    public Carbon $TrainingStartDate;
 
     public function mount()
     {
-        $this->initTrainer = now();
+        $this->TrainingStartDate = now();
         $this->generateCircles();
     }
 
     public function generateCircles()
     {
-        $seconds = (int) $this->initTrainer->diffInSeconds(now());
+        $seconds = (int)$this->TrainingStartDate->diffInSeconds(now());
         $intervals = $seconds / 15;
-        $maxCircles = (int) $intervals;
-        foreach (range(start: 1, end: $maxCircles >= 1 ? $maxCircles : 1) as $i) {
+        $maxCircles = (int)$intervals >= 1 ? (int)$intervals : 1;
+        foreach (range(1, rand(1, $maxCircles)) as $i) {
             $this->circles[] = [
                 'x' => rand(0, 90),
                 'y' => rand(0, 80),
@@ -38,7 +37,6 @@ new class extends Component {
 }; ?>
 <div class="text-center text-8xl">
     Trainer
-
     <div wire:poll="generateCircles" wire:init="generateCircles" data-circles="{{ json_encode($circles) }}">
         <div x-data="{ circles: @entangle('circles').live }">
             <template x-for="(circle, index) in circles" :key="index">
