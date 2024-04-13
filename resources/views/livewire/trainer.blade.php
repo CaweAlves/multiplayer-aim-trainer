@@ -41,6 +41,6 @@ new class extends Component {
             </template>
         </div>
     </div>
-</div>  
+</div>
 
 </div>
