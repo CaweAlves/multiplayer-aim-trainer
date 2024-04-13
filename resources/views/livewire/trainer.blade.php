@@ -1,5 +1,6 @@
 <?php
 
+use \Carbon\Carbon;
 use Livewire\Volt\Component;
 
 new class extends Component {
@@ -7,14 +8,20 @@ new class extends Component {
 
     public int $hits = 0;
 
+    public Carbon $initTrainer;
+
     public function mount()
     {
+        $this->initTrainer = now();
         $this->generateCircles();
     }
 
     public function generateCircles()
     {
-        foreach (range(1, 1) as $i) {
+        $seconds = (int) $this->initTrainer->diffInSeconds(now());
+        $intervals = $seconds / 15;
+        $maxCircles = (int) $intervals;
+        foreach (range(start: 1, end: $maxCircles >= 1 ? $maxCircles : 1) as $i) {
             $this->circles[] = [
                 'x' => rand(0, 90),
                 'y' => rand(0, 80),
