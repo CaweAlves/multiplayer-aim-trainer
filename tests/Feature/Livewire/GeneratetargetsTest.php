@@ -14,7 +14,7 @@ it('be able generate targets', function () {
     $component->call('generate');
     $targets = $component->get('targets');
 
-    expect(count($targets))->toBe(1);
+    expect($targets)->toHaveCount(1);
 });
 
 it('be able increasing the number of targets over time', function () {
@@ -24,5 +24,5 @@ it('be able increasing the number of targets over time', function () {
     $component->call('generate');
     $targets = $component->get('targets');
 
-    expect(count($targets))->toBe(2);
+    expect($targets)->toHaveCount(2);
 });
