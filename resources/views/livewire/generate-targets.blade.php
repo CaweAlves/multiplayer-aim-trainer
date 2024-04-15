@@ -14,7 +14,7 @@ $generate = function () {
     $intervals  = $seconds / 10;
     $maxCircles = max(1, (int) $intervals);
 
-    foreach (range(1, $maxCircles) as $i) {
+    foreach (range(1, rand(1, $maxCircles)) as $i) {
         $this->targets[] = [
             'x'    => rand(0, 90),
             'y'    => rand(0, 80),
