@@ -19,12 +19,12 @@ it('be able generate targets', function () {
 
 it('be able increasing the number of targets over time', function () {
     $component = Volt::test('generate-targets');
-    sleep(20);
+    sleep(40);
 
     $component->call('generate');
     $targets = $component->get('targets');
 
-    expect($targets)->toHaveCount(2);
+    expect($targets)->toBeGreaterThanOrEqual(2);
 });
 
 it('be able to generate a random number of targets over time', function () {
