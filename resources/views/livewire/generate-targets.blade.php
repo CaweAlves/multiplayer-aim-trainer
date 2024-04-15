@@ -21,7 +21,11 @@ $generate = function () {
             'size' => rand(10, 50),
         ];
     }
-}
+};
+
+$removeTarget = function ($target) {
+    unset($this->targets[$target]);
+};
 
 ?>
 
