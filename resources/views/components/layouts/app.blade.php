@@ -38,7 +38,7 @@
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                background-color: #2563eb;
+                background-color: var(--random-sight-color);
             }
 
             .sight::before {
@@ -66,9 +66,16 @@
         </style>
 
     </head>
-    <body  x-data="{ mouseX: 0, mouseY: 0 }" @mousemove="mouseX = $event.clientX  + 'px'; mouseY = $event.clientY + 'px'" class="h-screen bg-slate-950 text-white">
+    <body onpageshow="randomizeSightColor()" x-data="{ mouseX: 0, mouseY: 0 }" @mousemove="mouseX = $event.clientX  + 'px'; mouseY = $event.clientY + 'px'" class="h-screen bg-slate-950 text-white">
         {{ $slot }}
 
         @livewire('mousetracker')
     </body>
+
+    <script>
+        function randomizeSightColor() {
+        var color = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+        document.documentElement.style.setProperty('--random-sight-color', color);
+}
+    </script>
 </html>
