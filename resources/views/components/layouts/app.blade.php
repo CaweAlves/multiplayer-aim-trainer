@@ -70,6 +70,7 @@
         {{ $slot }}
 
         @livewire('mousetracker')
+        @livewire('score')
     </body>
 
     <script>

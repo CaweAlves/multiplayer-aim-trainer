@@ -1,6 +1,8 @@
 <?php
 
+use App\Events\ClickEvent;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 use function Livewire\Volt\{state};
 
@@ -24,6 +26,7 @@ $generate = function () {
 };
 
 $removeTarget = function ($target) {
+    ClickEvent::dispatch(Cache::get("userScore") ?? 0);
     unset($this->targets[$target]);
 };
 
